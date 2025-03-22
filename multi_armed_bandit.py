@@ -88,37 +88,50 @@ def run_bandit_experiment(victim_model, samplingTimes):
 
 
 if __name__ == "__main__":
-    # Configure command line arguments
-    parser = argparse.ArgumentParser(description='Multi-Agent Bandit LLM Jailbreaking Framework')
+    # # Configure command line arguments
+    # parser = argparse.ArgumentParser(description='Multi-Agent Bandit LLM Jailbreaking Framework')
     
-    # Add arguments
-    parser.add_argument(
-        '--victim_model',
-        type=str,
-        default='qwen',
-        help='Target model name (gemini, claude, gpt4, qwen, codellama, deepseek)'
-    )
+    # # Add arguments
+    # parser.add_argument(
+    #     '--victim_model',
+    #     type=str,
+    #     default='qwen',
+    #     help='Target model name (gemini, claude, gpt4, qwen, codellama, deepseek)'
+    # )
     
-    # Number of times to repeat template sampling
-    parser.add_argument(
-        '--samplingTimes',
-        type=int,
-        default=1,
-        help='Number of sampling iterations'
-    )
+    # # Number of times to repeat template sampling
+    # parser.add_argument(
+    #     '--samplingTimes',
+    #     type=int,
+    #     default=1,
+    #     help='Number of sampling iterations'
+    # )
     
-    args = parser.parse_args()
+    # args = parser.parse_args()
 
+    # # Print configuration
+    # print(f"Using model: {args.victim_model}")
+    # print(f"Sampling times: {args.samplingTimes}")
+
+    # # Usage examples:
+    # # nohup python multi_armed_bandit.py --victim_model "gpt4" > output.log 2>&1 &
+    # # nohup python multi_armed_bandit.py --victim_model "deepseek" > output2.log 2>&1 &
+    # # nohup python multi_armed_bandit.py --victim_model "codellama" > output3.log 2>&1 &
+    # # nohup python multi_armed_bandit.py --victim_model "claude" > output4.log 2>&1 &
+    # # nohup python multi_armed_bandit.py --victim_model "qwen" > output5.log 2>&1 &
+    # # nohup python multi_armed_bandit.py --victim_model "gemini" > output6.log 2>&1 &
+    
+    # run_bandit_experiment(args.victim_model, args.samplingTimes)
+    # Set parameters directly in the main function
+    victim_models = ["gemini", "claude", "gpt4", "qwen", "codellama", "deepseek"]
+    samplingTimes = 1  # Number of sampling iterations
+    
     # Print configuration
-    print(f"Using model: {args.victim_model}")
-    print(f"Sampling times: {args.samplingTimes}")
-
-    # Usage examples:
-    # nohup python multi_armed_bandit.py --victim_model "gpt4" > output.log 2>&1 &
-    # nohup python multi_armed_bandit.py --victim_model "deepseek" > output2.log 2>&1 &
-    # nohup python multi_armed_bandit.py --victim_model "codellama" > output3.log 2>&1 &
-    # nohup python multi_armed_bandit.py --victim_model "claude" > output4.log 2>&1 &
-    # nohup python multi_armed_bandit.py --victim_model "qwen" > output5.log 2>&1 &
-    # nohup python multi_armed_bandit.py --victim_model "gemini" > output6.log 2>&1 &
-    
-    run_bandit_experiment(args.victim_model, args.samplingTimes)
+    for model in victim_models:
+        print(f"Running experiment with model: {model}")
+        print(f"Sampling times: {samplingTimes}")
+        
+        # Call the main function for each model
+        run_bandit_experiment(model, samplingTimes)
+        
+        print(f"Experiment completed for {model}\n")
